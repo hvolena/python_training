@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
 import pytest
 from contact import Contact
-from application import Application
+from fixture.application import Application
 
 @pytest.fixture
 def app(request):
