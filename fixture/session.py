@@ -6,6 +6,8 @@ class SessionHelper:
     def logout(self):
         wd = self.app.wd
         wd.find_element_by_link_text("Logout").click()
+        while not wd.find_element_by_name("user"):
+            pass
 
     def login(self, username, password):
         wd = self.app.wd
