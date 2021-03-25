@@ -17,6 +17,10 @@ class Application:
         wd.get(
             "http://localhost/addressbook/group.php?delete=Delete+group%28s%29&selected%5B%5D=1&selected%5B%5D=2&selected%5B%5D=3")
 
+    def return_home_page(self):
+        wd = self.wd
+        wd.find_element_by_link_text("home").click()
+
     def destroy(self):
         self.wd.quit()
 
