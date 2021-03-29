@@ -10,12 +10,8 @@ class ContactHelper:
     def create_new(self, contact):
         wd = self.app.wd
         # fill contact form
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(contact.firstname)
-        wd.find_element_by_name("middlename").click()
-        wd.find_element_by_name("middlename").clear()
-        wd.find_element_by_name("middlename").send_keys(contact.middlename)
+        self.set_first_name(contact.firstname)
+        self.change_field_values("middlename", contact.middlename)
         # submit form
         wd.find_element_by_name("submit").click()
 
@@ -32,8 +28,17 @@ class ContactHelper:
         # select edit first contact
         wd.find_element_by_xpath("//img[@title='Edit']").click()
         # edit form
-        wd.find_element_by_name("firstname").click()
-        wd.find_element_by_name("firstname").clear()
-        wd.find_element_by_name("firstname").send_keys(firstname)
+        self.set_first_name(firstname)
         # submit edition
         wd.find_element_by_name("update").click()
+
+    def set_first_name(self, firstname):
+        self.change_field_values("firstname", firstname)
+
+    def change_field_values(self, field_name, text):
+        wd = self.app.wd
+        if text is not None:
+            wd.find_element_by_name(field_name).click()
+            wd.find_element_by_name(field_name).clear()
+            wd.find_element_by_name(field_name).send_keys(text)
+
